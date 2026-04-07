@@ -20,48 +20,53 @@ let announcements = [];
 const booksData = {
     arabic: {
         title: 'اللغة العربية - لغتي الجميلة',
+        pdfUrl: 'https://www.minhaji.net/download/arabic-books',
         pages: {
-            1: { title: 'المقدمة', content: '<h3>بسم الله الرحمن الرحيم</h3><p>مرحباً بكم في كتاب اللغة العربية. هذا الكتاب يهدف إلى تعليم اللغة العربية بطريقة مبسطة وممتعة.</p><h4>أهداف الوحدة الأولى:</h4><ul><li>تعلم القراءة والكتابة</li><li>فهم النصوص الأدبية</li><li>إتقان قواعد اللغة</li></ul>' },
-            2: { title: 'درس: حرف الألف', content: '<h3>حرف الألف</h3><p>الألف هو أول حروف اللغة العربية. يخرج من الجوف. أمثلة: أَسَد، أَرْنَب، أَنْف.</p><div class="example"><strong>تمرين:</strong> اكتب ثلاثة كلمات تبدأ بحرف الألف.</div>' },
-            3: { title: 'درس: حرف الباء', content: '<h3>حرف الباء</h3><p>الباء من الحروف الشفوية. أمثلة: بَطَّة، بَيْت، بَاب.</p><div class="example"><strong>تمرين:</strong> اكتب ثلاثة كلمات تبدأ بحرف الباء.</div>' },
-            4: { title: 'قصة: الأسد والفأر', content: '<h3>قصة الأسد والفأر</h3><p>كان يا مكان في قديم الزمان، أسد قوي يعيش في الغابة... وأثناء نومه، وقع فأر صغير على جسده...</p><p><strong>العبرة:</strong> لا تستهن بأحد، فكل مخلوق له قيمة.</p>' },
-            5: { title: 'قواعد: أنواع الكلمة', content: '<h3>أنواع الكلمة في اللغة العربية</h3><ul><li><strong>اسم:</strong> ما دل على شيء مثل: كتاب، شجرة</li><li><strong>فعل:</strong> ما دل على حدث مثل: كتب، يكتب</li><li><strong>حرف:</strong> ما دل على معنى في غيره مثل: في، على</li></ul>' }
+            1: { title: 'المقدمة', content: '<h3>بسم الله الرحمن الرحيم</h3><p>مرحباً بكم في كتاب اللغة العربية. هذا الكتاب يهدف لتعليم اللغة العربية بطريقة ممتعة وسهلة.</p>' },
+            2: { title: 'درس: حرف الألف', content: '<h3>حرف الألف</h3><p>الألف هو أول حروف اللغة العربية. يخرج من الجوف. أمثلة: أَسَد، أَب، أَمّ.</p><div class="example"><strong>تمرين:</strong> اكتب 5 كلمات تبدأ بحرف الألف.</div>' },
+            3: { title: 'درس: حرف الباء', content: '<h3>حرف الباء</h3><p>الباء من الحروف الشفوية. أمثلة: بَطَّة، بَيْت، بَاب.</p><div class="example"><strong>تمرين:</strong> أكمل الكلمات: _َيْت، بَـــــَّة</div>' },
+            4: { title: 'قصة: الأسد والفأر', content: '<h3>قصة الأسد والفأر</h3><p>كان يا مكان في قديم الزمان، أسد قوي يعيش في الغابة. ذات يوم نام الأسد تحت الشمس الحارة، فجاء فأر صغير وقفز على أنفه فاستيقظ الأسد غاضباً!</p>' },
+            5: { title: 'قواعد: أنواع الكلمة', content: '<h3>أنواع الكلمة في اللغة العربية</h3><ul><li><strong>اسم:</strong> ما دل على شيء معين</li><li><strong>فعل:</strong> ما دل على حدث</li><li><strong>حرف:</strong> ما دل على معنى</li></ul>' }
         }
     },
     math: {
         title: 'الرياضيات - الرياضيات الممتعة',
+        pdfUrl: 'https://www.minhaji.net/download/math-books',
         pages: {
-            1: { title: 'مقدمة في الرياضيات', content: '<h3>مرحباً في عالم الرياضيات</h3><p>الرياضيات هي لغة العلوم. سنتعلم فيها الأعداد والعمليات الحسابية والأشكال الهندسية.</p>' },
-            2: { title: 'الأعداد من 1 إلى 10', content: '<h3>الأعداد من 1 إلى 10</h3><p>١، ٢، ٣، ٤، ٥، ٦، ٧، ٨، ٩، ١٠</p><div class="example"><strong>تمرين:</strong> كم عدد أصابع يديك؟</div>' },
-            3: { title: 'الجمع', content: '<h3>عملية الجمع</h3><p>الجمع هو إضافة عدد إلى آخر. مثال: ٢ + ٣ = ٥</p><div class="example"><strong>تمرين:</strong> ٤ + ٢ = ؟</div>' },
-            4: { title: 'الطرح', content: '<h3>عملية الطرح</h3><p>الطرح هو إزالة عدد من آخر. مثال: ٥ - ٢ = ٣</p><div class="example"><strong>تمرين:</strong> ٧ - ٣ = ؟</div>' },
-            5: { title: 'الأشكال الهندسية', content: '<h3>الأشكال الهندسية الأساسية</h3><ul><li>المربع: له ٤ أضلاع متساوية</li><li>الدائرة: ليس لها زوايا</li><li>المثلث: له ٣ أضلاع</li><li>المستطيل: له ٤ أضلاع، كل ضلعين متقابلين متساويين</li></ul>' }
+            1: { title: 'مقدمة في الرياضيات', content: '<h3>مرحباً في عالم الرياضيات</h3><p>الرياضيات هي لغة العلوم. سنتعلم فيها الأساسيات والعمليات الحسابية.</p>' },
+            2: { title: 'الأعداد من 1 إلى 10', content: '<h3>الأعداد من 1 إلى 10</h3><p>١، ٢، ٣، ٤، ٥، ٦، ٧، ٨، ٩، ١٠</p><div class="example"><strong>تمرين:</strong> رتب الأرقام من الأصغر للأكبر: 5، 2، 8، 1</div>' },
+            3: { title: 'الجمع', content: '<h3>عملية الجمع</h3><p>الجمع هو إضافة عدد إلى آخر. مثال: ٢ + ٣ = ٥</p><div class="example"><strong>تمرين:</strong> احسب: 3 + 4 = ؟ و 5 + 2 = ؟</div>' },
+            4: { title: 'الطرح', content: '<h3>عملية الطرح</h3><p>الطرح هو إزالة عدد من آخر. مثال: ٥ - ٢ = ٣</p><div class="example"><strong>تمرين:</strong> احسب: 7 - 3 = ؟ و 9 - 4 = ؟</div>' },
+            5: { title: 'الأشكال الهندسية', content: '<h3>الأشكال الهندسية الأساسية</h3><ul><li>المربع: له ٤ أضلاع متساوية</li><li>المثلث: له ٣ أضلاع</li><li>الدائرة: ليس لها أضلاع</li></ul>' }
         }
     },
     science: {
         title: 'العلوم - اكتشف العالم',
+        pdfUrl: 'https://www.minhaji.net/download/science-books',
         pages: {
-            1: { title: 'مقدمة في العلوم', content: '<h3>مرحباً في عالم العلوم</h3><p>العلوم تشرح لنا كيف يعمل العالم من حولنا. سنتعلم عن الحيوانات والنباتات والفضاء.</p>' },
-            2: { title: 'الحيوانات الأليفة', content: '<h3>الحيوانات الأليفة</h3><p>الحيوانات الأليفة هي التي تعيش مع الإنسان مثل: القط، الكلب، الأرنب، الحمام.</p><div class="example"><strong>نشاط:</strong> هل لديك حيوان أليف في المنزل؟</div>' },
-            3: { title: 'الحيوانات المفترسة', content: '<h3>الحيوانات المفترسة</h3><p>الحيوانات المفترسة هي التي تفترس غيرها للطعام مثل: الأسد، النمر، الذئب.</p>' },
-            4: { title: 'النباتات', content: '<h3>النباتات حولنا</h3><p>النباتات تمدنا بالأكسجين والغذاء. أنواع النباتات: الأشجار، الأزهار، الأعشاب.</p>' },
+            1: { title: 'مقدمة في العلوم', content: '<h3>مرحباً في عالم العلوم</h3><p>العلوم تشرح لنا كيف يعمل العالم من حولنا. سنتعرف على الطبيعة والحيوانات والنباتات.</p>' },
+            2: { title: 'الحيوانات الأليفة', content: '<h3>الحيوانات الأليفة</h3><p>الحيوانات الأليفة هي التي تعيش مع الإنسان مثل: الكلاب والقطط والأرانب والعصافير.</p>' },
+            3: { title: 'الحيوانات المفترسة', content: '<h3>الحيوانات المفترسة</h3><p>الحيوانات المفترسة هي التي تفترس غيرها للعيش مثل: الأسد والنمر والنسر.</p>' },
+            4: { title: 'النباتات', content: '<h3>النباتات حولنا</h3><p>النباتات تمدنا بالأكسجين والغذاء. أنواع النباتات: الأشجار والزهور والأعشاب.</p>' },
             5: { title: 'الفضاء', content: '<h3>الفضاء الواسع</h3><p>الفضاء هو كل ما هو خارج الأرض. فيه الشمس والقمر والنجوم والكواكب.</p>' }
         }
     },
     islamic: {
         title: 'التربية الإسلامية - نور الإسلام',
+        pdfUrl: 'https://www.minhaji.net/download/islamic-books',
         pages: {
-            1: { title: 'سورة الفاتحة', content: '<h3>سورة الفاتحة</h3><p>بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ (1) الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ (2) الرَّحْمَٰنِ الرَّحِيمِ (3) مَالِكِ يَوْمِ الدِّينِ (4) إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ (5) اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ (6) صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ (7)</p>' },
-            2: { title: 'أركان الإسلام', content: '<h3>أركان الإسلام الخمسة</h3><ul><li>شهادة أن لا إله إلا الله وأن محمداً رسول الله</li><li>إقام الصلاة</li><li>إيتاء الزكاة</li><li>صوم رمضان</li><li>حج البيت لمن استطاع إليه سبيلاً</li></ul>' },
-            3: { title: 'الوضوء', content: '<h3>كيفية الوضوء</h3><ol><li>النية</li><li>غسل الكفين ثلاثاً</li><li>المضمضة والاستنشاق</li><li>غسل الوجه ثلاثاً</li><li>غسل اليدين إلى المرفقين ثلاثاً</li><li>مسح الرأس والأذنين</li><li>غسل الرجلين إلى الكعبين ثلاثاً</li></ol>' }
+            1: { title: 'سورة الفاتحة', content: '<h3>سورة الفاتحة</h3><p>بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ (1) الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</p>' },
+            2: { title: 'أركان الإسلام', content: '<h3>أركان الإسلام الخمسة</h3><ul><li>شهادة أن لا إله إلا الله وأن محمداً رسول الله</li><li>إقام الصلاة</li><li>إيتاء الزكاة</li><li>صوم رمضان</li><li>حج البيت الحرام</li></ul>' },
+            3: { title: 'الوضوء', content: '<h3>كيفية الوضوء</h3><ol><li>النية</li><li>غسل الكفين ثلاثاً</li><li>المضمضة والاستنشاق</li><li>غسل الوجه ثلاثاً</li><li>غسل الذراعين إلى المرفقين</li><li>مسح الرأس</li><li>غسل الرجلين</li></ol>' }
         }
     },
     english: {
         title: 'English Language - Let\'s Learn',
+        pdfUrl: 'https://www.minhaji.net/download/english-books',
         pages: {
-            1: { title: 'Introduction', content: '<h3>Welcome to English</h3><p>Let\'s learn English together! English is a global language.</p>' },
-            2: { title: 'Alphabet', content: '<h3>The English Alphabet</h3><p>A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p><div class="example"><strong>Exercise:</strong> Sing the alphabet song!</div>' },
-            3: { title: 'Greetings', content: '<h3>Greetings in English</h3><ul><li>Hello! - مرحباً</li><li>Good morning! - صباح الخير</li><li>Good afternoon! - مساء الخير</li><li>How are you? - كيف حالك؟</li><li>I\'m fine, thank you - أنا بخير، شكراً</li></ul>' }
+            1: { title: 'Introduction', content: '<h3>Welcome to English</h3><p>Let\'s learn English together! English is a global language spoken worldwide.</p>' },
+            2: { title: 'Alphabet', content: '<h3>The English Alphabet</h3><p>A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p><div class="example"><strong>Exercise:</strong> Sing the alphabet song.</div>' },
+            3: { title: 'Greetings', content: '<h3>Greetings in English</h3><ul><li>Hello! - مرحباً</li><li>Good morning! - صباح الخير</li><li>Good afternoon! - مساء الخير</li><li>How are you? - كيف حالك؟</li></ul>' }
         }
     }
 };
@@ -89,9 +94,9 @@ function updateCurrentLesson() {
     const now = new Date();
     const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const currentDay = dayNames[now.getDay()];
-    const currentHour = now.getHours();
-    const currentMinute = now.getMinutes();
-    const currentTime = `${currentHour.toString().padStart(2,'0')}:${currentMinute.toString().padStart(2,'0')}`;
+    const currentHour = String(now.getHours()).padStart(2, '0');
+    const currentMinute = String(now.getMinutes()).padStart(2, '0');
+    const currentTime = `${currentHour}:${currentMinute}`;
     
     const schedule = JSON.parse(localStorage.getItem('scheduleData')) || defaultSchedule;
     const daySchedule = schedule[currentDay];
@@ -110,14 +115,20 @@ function updateCurrentLesson() {
     
     const currentLessonBox = document.getElementById('currentLessonBox');
     if (currentLessonBox) {
-        if (currentLesson) currentLessonBox.innerHTML = `<i class="fas fa-chalkboard"></i> ${currentLesson.subject} - الساعة ${currentLesson.time}`;
-        else currentLessonBox.innerHTML = `<i class="fas fa-coffee"></i> لا توجد حصة الآن - وقت راحة`;
+        if (currentLesson) {
+            currentLessonBox.innerHTML = `<i class="fas fa-chalkboard"></i> ${currentLesson.subject} - الساعة ${currentLesson.time}`;
+        } else {
+            currentLessonBox.innerHTML = `<i class="fas fa-coffee"></i> لا توجد حصة الآن - وقت راحة`;
+        }
     }
     
     const nextLessonBox = document.getElementById('nextLessonBox');
     if (nextLessonBox) {
-        if (nextLesson) nextLessonBox.innerHTML = `<i class="fas fa-bell"></i> الحصة القادمة: ${nextLesson.subject} الساعة ${nextLesson.time}`;
-        else nextLessonBox.innerHTML = `<i class="fas fa-check"></i> انتهت الحصص لهذا اليوم`;
+        if (nextLesson) {
+            nextLessonBox.innerHTML = `<i class="fas fa-bell"></i> الحصة القادمة: ${nextLesson.subject} الساعة ${nextLesson.time}`;
+        } else {
+            nextLessonBox.innerHTML = `<i class="fas fa-check"></i> انتهت الحصص لهذا اليوم`;
+        }
     }
 }
 
@@ -140,6 +151,17 @@ function pushBookToStudents() {
     showToast('📖 تم إرسال أمر فتح الكتاب للطلاب');
 }
 
+function openPDFBook() {
+    const subject = currentTeacherSubject;
+    const book = booksData[subject];
+    if (!book || !book.pdfUrl) {
+        showToast('⚠️ لا يوجد رابط PDF لهذا الكتاب', true);
+        return;
+    }
+    window.open(book.pdfUrl, '_blank');
+    showToast(`📄 تم فتح كتاب ${book.title} من موقع منهجي`);
+}
+
 function sendInstantQuestion() {
     const question = prompt('اكتب السؤال الذي تريد إرساله للطلاب:');
     if (!question) return;
@@ -147,7 +169,9 @@ function sendInstantQuestion() {
     if (alertBox) {
         alertBox.innerHTML = `<i class="fas fa-question-circle"></i><span>❓ سؤال من المعلم: ${question}</span>`;
         setTimeout(() => {
-            if (alertBox && alertBox.innerHTML.includes('سؤال من المعلم')) alertBox.innerHTML = '<i class="fas fa-info-circle"></i><span>لا توجد أوامر حالية</span>';
+            if (alertBox && alertBox.innerHTML.includes('سؤال من المعلم')) {
+                alertBox.innerHTML = '<i class="fas fa-info-circle"></i><span>لا توجد أوامر حالية</span>';
+            }
         }, 30000);
     }
     showToast('❓ تم إرسال السؤال للطلاب');
@@ -156,14 +180,19 @@ function sendInstantQuestion() {
 function sendHomework() {
     const homework = prompt('اكتب الواجب الذي تريد إرساله:');
     if (!homework) return;
-    homeworkList.unshift({ id: Date.now(), text: homework, due: new Date().toLocaleDateString('ar-EG'), solved: false });
+    homeworkList.unshift({ 
+        id: Date.now(), 
+        text: homework, 
+        due: new Date().toLocaleDateString('ar-EG'), 
+        solved: false 
+    });
     localStorage.setItem('homeworkList', JSON.stringify(homeworkList));
     updateHomeworkList();
     showToast('📤 تم إرسال الواجب للطلاب');
 }
 
 function takeAttendance() {
-    const count = Math.floor(Math.random() * (30 - 20 + 1)) + 20;
+    const count = Math.floor(Math.random() * 11) + 20; // 20-30 طالب
     showToast(`✅ تم تحضير ${count} طالباً بنجاح`);
 }
 
@@ -174,7 +203,11 @@ function showStudentList() {
 function broadcastMessage() {
     const message = prompt('اكتب الرسالة التي تريد إرسالها لجميع الطلاب:');
     if (!message) return;
-    announcements.unshift({ id: Date.now(), text: message, date: new Date().toLocaleDateString('ar-EG') });
+    announcements.unshift({ 
+        id: Date.now(), 
+        text: message, 
+        date: new Date().toLocaleDateString('ar-EG') 
+    });
     updateAnnouncements();
     showToast('📢 تم إرسال الرسالة للطلاب');
 }
@@ -193,25 +226,44 @@ function displayTeacherBook() {
     if (!page) return;
     const container = document.getElementById('teacherBookContent');
     if (container) {
-        container.innerHTML = `<div class="book-page"><h3>${page.title}</h3>${page.content}<p class="text-muted" style="margin-top:20px">الصفحة ${currentTeacherPage} من ${totalPages}</p></div>`;
+        container.innerHTML = `
+            <div class="book-page">
+                <h3>${page.title}</h3>
+                ${page.content}
+                <p class="text-muted" style="margin-top:20px">الصفحة ${currentTeacherPage} من ${totalPages}</p>
+                <button class="btn btn-sm btn-info" onclick="openPDFBook()">
+                    <i class="fas fa-file-pdf"></i> فتح الكتاب PDF من منهجي
+                </button>
+            </div>
+        `;
     }
     const pageSpan = document.getElementById('teacherPageNum');
     if (pageSpan) pageSpan.textContent = `الصفحة ${currentTeacherPage} من ${totalPages}`;
 }
 
 function teacherBookPrev() {
-    if (currentTeacherPage > 1) { currentTeacherPage--; displayTeacherBook(); }
-    else showToast('أنت في الصفحة الأولى');
+    if (currentTeacherPage > 1) { 
+        currentTeacherPage--; 
+        displayTeacherBook(); 
+    } else {
+        showToast('أنت في الصفحة الأولى');
+    }
 }
 
 function teacherBookNext() {
-    if (currentTeacherPage < totalPages) { currentTeacherPage++; displayTeacherBook(); }
-    else showToast('أنت في الصفحة الأخيرة');
+    if (currentTeacherPage < totalPages) { 
+        currentTeacherPage++; 
+        displayTeacherBook(); 
+    } else {
+        showToast('أنت في الصفحة الأخيرة');
+    }
 }
 
 function closeTeacherBook() {
     const container = document.getElementById('teacherBookContent');
-    if (container) container.innerHTML = '<div class="book-page"><h3>الكتاب مغلق</h3><p>اضغط على تبويب الكتاب لإعادة فتحه</p></div>';
+    if (container) {
+        container.innerHTML = '<div class="book-page"><h3>الكتاب مغلق</h3><p>اضغط على تبويب الكتاب لإعادة فتحه</p></div>';
+    }
 }
 
 function sendCurrentPageToStudents() {
@@ -248,7 +300,14 @@ function addQuestionToExam() {
         return;
     }
     
-    currentExamQuestions.push({ id: Date.now(), text: questionText, type, options, correctAnswer, subject });
+    currentExamQuestions.push({ 
+        id: Date.now(), 
+        text: questionText, 
+        type, 
+        options, 
+        correctAnswer, 
+        subject 
+    });
     updateExamQuestionsList();
     document.getElementById('questionText').value = '';
     document.getElementById('correctAnswer').value = '';
@@ -285,10 +344,22 @@ function removeQuestion(id) {
 
 function publishExam() {
     const title = document.getElementById('examTitle').value;
-    if (!title) { showToast('⚠️ يرجى إدخال عنوان الاختبار', true); return; }
-    if (currentExamQuestions.length === 0) { showToast('⚠️ يرجى إضافة أسئلة للاختبار', true); return; }
+    if (!title) { 
+        showToast('⚠️ يرجى إدخال عنوان الاختبار', true); 
+        return; 
+    }
+    if (currentExamQuestions.length === 0) { 
+        showToast('⚠️ يرجى إضافة أسئلة للاختبار', true); 
+        return; 
+    }
     
-    const exam = { id: Date.now(), title, subject: document.getElementById('examSubject').value, questions: [...currentExamQuestions], published: new Date().toLocaleDateString('ar-EG') };
+    const exam = { 
+        id: Date.now(), 
+        title, 
+        subject: document.getElementById('examSubject').value, 
+        questions: [...currentExamQuestions], 
+        published: new Date().toLocaleDateString('ar-EG') 
+    };
     exams.push(exam);
     localStorage.setItem('exams', JSON.stringify(exams));
     updateStudentExamsList();
@@ -303,10 +374,17 @@ function updateStudentExamsList() {
     const container = document.getElementById('studentExamsList');
     if (!container) return;
     const availableExams = exams.filter(e => !submittedExams.some(se => se.examId === e.id));
-    if (availableExams.length === 0) { container.innerHTML = '<p class="text-muted">لا توجد اختبارات متاحة حالياً</p>'; return; }
+    if (availableExams.length === 0) { 
+        container.innerHTML = '<p class="text-muted">لا توجد اختبارات متاحة حالياً</p>'; 
+        return; 
+    }
     container.innerHTML = availableExams.map(e => `
         <div class="exam-item">
-            <div class="exam-header"><strong>${e.title}</strong><span>${e.subject}</span><span>${e.published}</span></div>
+            <div class="exam-header">
+                <strong>${e.title}</strong>
+                <span>${e.subject}</span>
+                <span>${e.published}</span>
+            </div>
             <div>عدد الأسئلة: ${e.questions.length}</div>
             <button class="btn btn-primary btn-sm" onclick="startExam(${e.id})">بدء الاختبار</button>
         </div>
@@ -316,10 +394,16 @@ function updateStudentExamsList() {
 function updatePreviousExamsList() {
     const container = document.getElementById('previousExamsList');
     if (!container) return;
-    if (exams.length === 0) { container.innerHTML = '<p class="text-muted">لا توجد اختبارات سابقة</p>'; return; }
+    if (exams.length === 0) { 
+        container.innerHTML = '<p class="text-muted">لا توجد اختبارات سابقة</p>'; 
+        return; 
+    }
     container.innerHTML = exams.map(e => `
         <div class="exam-item">
-            <div class="exam-header"><strong>${e.title}</strong><span>${e.published}</span></div>
+            <div class="exam-header">
+                <strong>${e.title}</strong>
+                <span>${e.published}</span>
+            </div>
             <div>عدد الأسئلة: ${e.questions.length}</div>
         </div>
     `).join('');
@@ -359,7 +443,12 @@ function submitExamAnswers() {
         if (studentAnswers[`q${q.id}`] === q.correctAnswer) score++;
     });
     
-    submittedExams.push({ examId: currentExam.id, score: score, total: currentExam.questions.length, date: new Date().toLocaleDateString('ar-EG') });
+    submittedExams.push({ 
+        examId: currentExam.id, 
+        score: score, 
+        total: currentExam.questions.length, 
+        date: new Date().toLocaleDateString('ar-EG') 
+    });
     localStorage.setItem('submittedExams', JSON.stringify(submittedExams));
     showToast(`✅ تم تسليم الاختبار! درجتك: ${score}/${currentExam.questions.length}`);
     closeExamModal();
@@ -382,8 +471,17 @@ function loadSubmissions() {
 function updateGradesHistory() {
     const container = document.getElementById('gradesHistory');
     if (!container) return;
-    if (submittedExams.length === 0) { container.innerHTML = '<p class="text-muted">لا توجد درجات مسجلة بعد</p>'; return; }
-    container.innerHTML = submittedExams.map(s => `<div class="exam-item"><strong>الاختبار:</strong> ${s.examId}<br><strong>الدرجة:</strong> ${s.score}/${s.total}<br><strong>التاريخ:</strong> ${s.date}</div>`).join('');
+    if (submittedExams.length === 0) { 
+        container.innerHTML = '<p class="text-muted">لا توجد درجات مسجلة بعد</p>'; 
+        return; 
+    }
+    container.innerHTML = submittedExams.map(s => `
+        <div class="exam-item">
+            <strong>الاختبار:</strong> ${s.examId}<br>
+            <strong>الدرجة:</strong> ${s.score}/${s.total}<br>
+            <strong>التاريخ:</strong> ${s.date}
+        </div>
+    `).join('');
 }
 
 // دوال الجدول
@@ -397,7 +495,9 @@ function saveSchedule() {
         const times = document.querySelectorAll(`.schedule-time-${day}`);
         const subjects = document.querySelectorAll(`.schedule-subject-${day}`);
         for (let i = 0; i < times.length; i++) {
-            if (times[i] && subjects[i]) periods.push({ time: times[i].value, subject: subjects[i].value });
+            if (times[i] && subjects[i]) {
+                periods.push({ time: times[i].value, subject: subjects[i].value });
+            }
         }
         newSchedule[day] = { periods };
     });
@@ -418,9 +518,18 @@ function updateScheduleDisplay() {
     const container = document.getElementById('scheduleDisplay');
     if (!container) return;
     const schedule = JSON.parse(localStorage.getItem('scheduleData')) || defaultSchedule;
-    const dayNames = { Sunday: 'الأحد', Monday: 'الإثنين', Tuesday: 'الثلاثاء', Wednesday: 'الأربعاء', Thursday: 'الخميس' };
+    const dayNames = { 
+        Sunday: 'الأحد', 
+        Monday: 'الإثنين', 
+        Tuesday: 'الثلاثاء', 
+        Wednesday: 'الأربعاء', 
+        Thursday: 'الخميس' 
+    };
     container.innerHTML = Object.entries(schedule).map(([day, data]) => `
-        <div class="schedule-day"><strong>${dayNames[day]}:</strong> ${data.periods.map(p => `${p.subject} (${p.time})`).join(' - ')}</div>
+        <div class="schedule-day">
+            <strong>${dayNames[day]}:</strong> 
+            ${data.periods.map(p => `${p.subject} (${p.time})`).join(' - ')}
+        </div>
     `).join('');
 }
 
@@ -443,20 +552,47 @@ function displayStudentBook() {
     if (!page) return;
     const container = document.getElementById('studentBookContent');
     if (container) {
-        container.innerHTML = `<div class="book-page"><h3>${page.title}</h3>${page.content}<p class="text-muted" style="margin-top:20px">الصفحة ${currentStudentPage} من ${totalPages}</p></div>`;
+        container.innerHTML = `
+            <div class="book-page">
+                <h3>${page.title}</h3>
+                ${page.content}
+                <p class="text-muted" style="margin-top:20px">الصفحة ${currentStudentPage} من ${totalPages}</p>
+                <button class="btn btn-sm btn-info" onclick="openStudentPDF()">
+                    <i class="fas fa-file-pdf"></i> فتح الكتاب PDF من منهجي
+                </button>
+            </div>
+        `;
     }
     const pageSpan = document.getElementById('studentPageNum');
     if (pageSpan) pageSpan.textContent = `الصفحة ${currentStudentPage} من ${totalPages}`;
 }
 
+function openStudentPDF() {
+    const book = booksData[currentStudentSubject];
+    if (!book || !book.pdfUrl) {
+        showToast('⚠️ لا يوجد رابط PDF لهذا الكتاب', true);
+        return;
+    }
+    window.open(book.pdfUrl, '_blank');
+    showToast(`📄 تم فتح كتاب ${book.title} من موقع منهجي`);
+}
+
 function studentBookPrev() {
-    if (currentStudentPage > 1) { currentStudentPage--; displayStudentBook(); }
-    else showToast('أنت في الصفحة الأولى');
+    if (currentStudentPage > 1) { 
+        currentStudentPage--; 
+        displayStudentBook(); 
+    } else {
+        showToast('أنت في الصفحة الأولى');
+    }
 }
 
 function studentBookNext() {
-    if (currentStudentPage < totalPages) { currentStudentPage++; displayStudentBook(); }
-    else showToast('أنت في الصفحة الأخيرة');
+    if (currentStudentPage < totalPages) { 
+        currentStudentPage++; 
+        displayStudentBook(); 
+    } else {
+        showToast('أنت في الصفحة الأخيرة');
+    }
 }
 
 function showSchedule() {
@@ -473,7 +609,10 @@ function updateHomeworkList() {
     const container = document.getElementById('homeworkList');
     if (!container) return;
     const savedHomework = JSON.parse(localStorage.getItem('homeworkList')) || [];
-    if (savedHomework.length === 0) { container.innerHTML = '<p class="text-muted">لا توجد واجبات حالياً</p>'; return; }
+    if (savedHomework.length === 0) { 
+        container.innerHTML = '<p class="text-muted">لا توجد واجبات حالياً</p>'; 
+        return; 
+    }
     container.innerHTML = savedHomework.map(h => `
         <div class="homework-item">
             <div><strong>${h.text}</strong></div>
@@ -501,8 +640,13 @@ function solveHomework(id) {
 function updateAnnouncements() {
     const container = document.getElementById('announcementsBox');
     if (!container) return;
-    if (announcements.length === 0) { container.innerHTML = '<p class="text-muted">لا توجد إعلانات جديدة</p>'; return; }
-    container.innerHTML = announcements.map(a => `<div class="announcement">📢 ${a.text} - <small>${a.date}</small></div>`).join('');
+    if (announcements.length === 0) { 
+        container.innerHTML = '<p class="text-muted">لا توجد إعلانات جديدة</p>'; 
+        return; 
+    }
+    container.innerHTML = announcements.map(a => `
+        <div class="announcement">📢 ${a.text} - <small>${a.date}</small></div>
+    `).join('');
 }
 
 // ========== الألعاب ==========
@@ -600,7 +744,11 @@ function startPuzzleGame() {
         { question: 'ما هو لون التفاح الأحمر؟', answer: 'أحمر' }
     ];
     const puzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
-    gameArea.innerHTML = `<div class="math-question">${puzzle.question}</div><input type="text" id="puzzleAnswer" class="form-input" placeholder="اكتب إجابتك"><button class="btn btn-primary" onclick="checkPuzzle('${puzzle.answer}')">تحقق</button>`;
+    gameArea.innerHTML = `
+        <div class="math-question">${puzzle.question}</div>
+        <input type="text" id="puzzleAnswer" class="form-input" placeholder="اكتب إجابتك">
+        <button class="btn btn-primary" onclick="checkPuzzle('${puzzle.answer}')">تحقق</button>
+    `;
 }
 
 function checkPuzzle(correctAnswer) {
@@ -615,7 +763,13 @@ function startFocusGame() {
     const gameArea = document.getElementById('gameArea');
     if (!gameArea) return;
     let score = 0;
-    gameArea.innerHTML = `<div class="focus-game"><div class="focus-target" id="focusTarget"></div><div>النتيجة: <span id="focusScore">0</span></div><button class="btn btn-secondary" onclick="startFocusGame()">إعادة</button></div>`;
+    gameArea.innerHTML = `
+        <div class="focus-game">
+            <div class="focus-target" id="focusTarget"></div>
+            <div>النتيجة: <span id="focusScore">0</span></div>
+            <button class="btn btn-secondary" onclick="startFocusGame()">إعادة تشغيل</button>
+        </div>
+    `;
     const target = document.getElementById('focusTarget');
     let timeout;
     function moveTarget() {
@@ -623,7 +777,11 @@ function startFocusGame() {
         const maxY = gameArea.clientHeight - 100;
         const x = Math.random() * maxX;
         const y = Math.random() * maxY;
-        if (target) { target.style.position = 'relative'; target.style.left = `${x}px`; target.style.top = `${y}px`; }
+        if (target) { 
+            target.style.position = 'relative'; 
+            target.style.left = `${x}px`; 
+            target.style.top = `${y}px`; 
+        }
         timeout = setTimeout(moveTarget, 1000);
     }
     if (target) target.onclick = () => { score++; document.getElementById('focusScore').textContent = score; };
@@ -636,13 +794,21 @@ function startWordGame() {
     const words = ['قلم', 'كتاب', 'مدرسة', 'معلم', 'طالب', 'علم', 'نجاح'];
     const randomWord = words[Math.floor(Math.random() * words.length)];
     const shuffled = randomWord.split('').sort(() => Math.random() - 0.5).join('');
-    gameArea.innerHTML = `<div class="math-question">رتب الكلمة: ${shuffled}</div><input type="text" id="wordAnswer" class="form-input" placeholder="اكتب الكلمة مرتبة"><button class="btn btn-primary" onclick="checkWord('${randomWord}')">تحقق</button>`;
+    gameArea.innerHTML = `
+        <div class="math-question">رتب الكلمة: ${shuffled}</div>
+        <input type="text" id="wordAnswer" class="form-input" placeholder="اكتب الكلمة مرتبة">
+        <button class="btn btn-primary" onclick="checkWord('${randomWord}')">تحقق</button>
+    `;
 }
 
 function checkWord(correctWord) {
     const answer = document.getElementById('wordAnswer');
-    if (answer && answer.value.trim() === correctWord) { showToast('✅ إجابة صحيحة!'); startWordGame(); }
-    else showToast('❌ إجابة خاطئة', true);
+    if (answer && answer.value.trim() === correctWord) { 
+        showToast('✅ إجابة صحيحة!'); 
+        startWordGame(); 
+    } else {
+        showToast('❌ إجابة خاطئة', true);
+    }
 }
 
 function startSpeedGame() {
@@ -650,24 +816,41 @@ function startSpeedGame() {
     if (!gameArea) return;
     let timeLeft = 10;
     let score = 0;
-    gameArea.innerHTML = `<div class="focus-game"><div>الوقت: <span id="timer">10</span></div><div>النتيجة: <span id="speedScore">0</span></div><button id="speedButton" class="btn btn-primary" style="width:200px; height:200px; font-size:2rem; margin:20px auto;">اضغط هنا</button><button class="btn btn-secondary" onclick="startSpeedGame()">إعادة</button></div>`;
+    gameArea.innerHTML = `
+        <div class="focus-game">
+            <div>الوقت: <span id="timer">10</span></div>
+            <div>النتيجة: <span id="speedScore">0</span></div>
+            <button id="speedButton" class="btn btn-primary">اضغط بسرعة!</button>
+        </div>
+    `;
     const button = document.getElementById('speedButton');
     const timerSpan = document.getElementById('timer');
     const scoreSpan = document.getElementById('speedScore');
-    const interval = setInterval(() => { timeLeft--; if (timerSpan) timerSpan.textContent = timeLeft; if (timeLeft <= 0) { clearInterval(interval); if (button) button.disabled = true; showToast(`⏰ انتهى الوقت! نتيجتك: ${score}`); } }, 1000);
+    const interval = setInterval(() => { 
+        timeLeft--; 
+        if (timerSpan) timerSpan.textContent = timeLeft; 
+        if (timeLeft <= 0) { 
+            clearInterval(interval); 
+            if (button) button.disabled = true; 
+            showToast(`انتهت اللعبة! نتيجتك: ${score}`);
+        }
+    }, 1000);
     if (button) button.onclick = () => { score++; if (scoreSpan) scoreSpan.textContent = score; };
 }
 
 // ========== AI ==========
 function askAI() {
     const question = document.getElementById('aiQuestion');
-    if (!question || !question.value.trim()) { showToast('⚠️ يرجى كتابة سؤال أولاً', true); return; }
+    if (!question || !question.value.trim()) { 
+        showToast('⚠️ يرجى كتابة سؤال أولاً', true); 
+        return; 
+    }
     const responseDiv = document.getElementById('aiResponse');
     if (responseDiv) {
         responseDiv.innerHTML = '<div class="ai-loading"><i class="fas fa-spinner fa-spin"></i> جاري تحليل السؤال...</div>';
         setTimeout(() => {
             const answers = {
-                default: 'شكراً لسؤالك! هذا سؤال مهم. الإجابة تعتمد على فهم عميق للموضوع. أنصحك بالرجوع إلى المصادر الموثوقة للحصول على إجابة دقيقة ومفصلة.',
+                default: 'شكراً لسؤالك! هذا سؤال مهم. الإجابة تعتمد على فهم عميق للموضوع. أنصحك بالرجوع إلى المصادر المتخصصة.',
                 math: 'عملية حسابية بسيطة. تذكر أن الرياضيات تعتمد على القواعد الأساسية مثل الجمع والطرح والضرب والقسمة.',
                 arabic: 'اللغة العربية غنية بالمفردات والمعاني. الإجابة تعتمد على سياق السؤال وقواعد النحو والصرف.',
                 science: 'العلوم تفسر الظواهر الطبيعية. هذا السؤال يتطلب فهماً للمنهج العلمي والتجارب العملية.'
@@ -700,7 +883,17 @@ function analyzeClassWithAI() {
     showToast('📊 جاري تحليل أداء الفصل...');
     setTimeout(() => {
         const responseDiv = document.getElementById('aiResponse');
-        if (responseDiv) responseDiv.innerHTML = `<div class="ai-response-content"><i class="fas fa-chart-line"></i> <strong>تحليل الفصل:</strong><br>مستوى التفاعل: 87%<br>نسبة الإجابات الصحيحة: 76%<br>الطلاب المتميزون: 8 طلاب<br>نقاط الضعف: الأسئلة المقالية<br>الاقتراح: زيادة الأنشطة الجماعية</div>`;
+        if (responseDiv) {
+            responseDiv.innerHTML = `
+                <div class="ai-response-content">
+                    <i class="fas fa-chart-line"></i> <strong>تحليل الفصل:</strong><br>
+                    مستوى التفاعل: 87%<br>
+                    متوسط الدرجات: 85<br>
+                    الطلاب المتفوقون: 12<br>
+                    الطلاب الذين يحتاجون دعم إضافي: 3
+                </div>
+            `;
+        }
     }, 2000);
 }
 
@@ -732,7 +925,11 @@ function toggleHighContrast() {
 function toggleTheme() {
     document.body.classList.toggle('dark-mode');
     const btn = document.getElementById('themeToggle');
-    if (btn) btn.innerHTML = document.body.classList.contains('dark-mode') ? '<i class="fas fa-sun"></i><span>الوضع الفاتح</span>' : '<i class="fas fa-moon"></i><span>الوضع المظلم</span>';
+    if (btn) {
+        btn.innerHTML = document.body.classList.contains('dark-mode') 
+            ? '<i class="fas fa-sun"></i><span>الوضع الفاتح</span>' 
+            : '<i class="fas fa-moon"></i><span>الوضع المظلم</span>';
+    }
     localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
 }
 
@@ -751,8 +948,12 @@ function loadSettings() {
 
 // ========== نافذة السؤال ==========
 function submitModalAnswer() {
-    if (selectedModalAnswer) { showToast(`✅ تم إرسال إجابتك: ${selectedModalAnswer}`); closeModal(); }
-    else showToast('⚠️ يرجى اختيار إجابة أولاً', true);
+    if (selectedModalAnswer) { 
+        showToast(`✅ تم إرسال إجابتك: ${selectedModalAnswer}`); 
+        closeModal(); 
+    } else {
+        showToast('⚠️ يرجى اختيار إجابة أولاً', true);
+    }
 }
 
 function closeModal() {
@@ -797,5 +998,5 @@ document.addEventListener('DOMContentLoaded', () => {
         const steps = document.getElementById('stepsCount');
         if (steps) steps.textContent = (parseInt(steps.textContent.replace(/,/g, '')) + Math.floor(Math.random() * 20)).toLocaleString();
     }, 30000);
-    showToast('✨ مرحباً بك في منصة Education With Rakeez ');
+    showToast('✨ مرحباً بك في منصة Education With Rakeez');
 });
