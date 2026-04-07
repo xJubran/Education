@@ -797,5 +797,5 @@ document.addEventListener('DOMContentLoaded', () => {
         const steps = document.getElementById('stepsCount');
         if (steps) steps.textContent = (parseInt(steps.textContent.replace(/,/g, '')) + Math.floor(Math.random() * 20)).toLocaleString();
     }, 30000);
-    showToast('✨ مرحباً بك في منصة Education With Rakeez');
+    showToast('✨ مرحباً بك في منصة Education With Rakeez ');
 });
