@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Education Easy | منصة المعلم والطالب المتكاملة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- زر تبديل الوضع -->
+    <button class="theme-switch" id="themeToggle" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+        <span>الوضع المظلم</span>
+    </button>
+
+    <div class="dashboard">
+        
+        <!-- ==================== المعلم (الجهة اليمنى) ==================== -->
+        <div class="panel teacher-panel">
+            <div class="panel-header">
+                <div class="header-title">
+                    <i class="fas fa-chalkboard-user"></i>
+                    <h2>لوحة المعلم</h2>
+                </div>
+                <span class="status-badge">نشط</span>
+            </div>
+
+            <div class="panel-body">
+                <!-- تبويبات المعلم -->
+                <div class="nav-tabs" id="teacherTabs">
+                    <button class="tab-btn active" data-tab="teacher-control">التحكم</button>
+                    <button class="tab-btn" data-tab="teacher-book">الكتاب</button>
+                    <button class="tab-btn" data-tab="teacher-exam">الاختبارات</button>
+                    <button class="tab-btn" data-tab="teacher-grades">التصحيح</button>
+                    <button class="tab-btn" data-tab="teacher-schedule">الجدول</button>
+                    <button class="tab-btn" data-tab="teacher-ai">AI</button>
+                    <button class="tab-btn" data-tab="teacher-settings">الإعدادات</button>
+                </div>
+
+                <!-- 1. التحكم -->
+                <div id="teacher-control" class="tab-content active">
+                    <div class="card">
+                        <h3><i class="fas fa-microchip"></i> التحكم في الأجهزة</h3>
+                        <div class="button-group">
+                            <button class="btn btn-primary" onclick="toggleScreenLock()"><i class="fas fa-lock"></i><span>قفل/فتح الشاشات</span></button>
+                            <button class="btn btn-success" onclick="pushBookToStudents()"><i class="fas fa-book"></i><span>فتح الكتاب للطلاب</span></button>
+                            <button class="btn btn-warning" onclick="sendInstantQuestion()"><i class="fas fa-question-circle"></i><span>سؤال فوري</span></button>
+                            <button class="btn btn-secondary" onclick="sendHomework()"><i class="fas fa-file-export"></i><span>إرسال واجب</span></button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-users"></i> إدارة الطلاب</h3>
+                        <div class="button-group">
+                            <button class="btn btn-outline" onclick="takeAttendance()"><i class="fas fa-clipboard-list"></i><span>تحضير الطلاب</span></button>
+                            <button class="btn btn-outline" onclick="showStudentList()"><i class="fas fa-list"></i><span>قائمة الطلاب</span></button>
+                            <button class="btn btn-outline" onclick="broadcastMessage()"><i class="fas fa-bullhorn"></i><span>رسالة عامة</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. الكتاب المدرسي للمعلم -->
+                <div id="teacher-book" class="tab-content">
+                    <div class="card">
+                        <h3><i class="fas fa-book-open"></i> كتاب المنهج</h3>
+                        <div class="form-group">
+                            <label>اختر المادة:</label>
+                            <select id="teacherSubjectSelect" class="form-input" onchange="changeTeacherBook()">
+                                <option value="arabic">اللغة العربية</option>
+                                <option value="math">الرياضيات</option>
+                                <option value="science">العلوم</option>
+                                <option value="islamic">التربية الإسلامية</option>
+                                <option value="english">اللغة الإنجليزية</option>
+                            </select>
+                        </div>
+                        <div class="book-controls">
+                            <button class="btn btn-sm" onclick="teacherBookPrev()"><i class="fas fa-chevron-right"></i> السابق</button>
+                            <span id="teacherPageNum">الصفحة 1 من 200</span>
+                            <button class="btn btn-sm" onclick="teacherBookNext()">التالي <i class="fas fa-chevron-left"></i></button>
+                            <button class="btn btn-sm btn-danger" onclick="closeTeacherBook()"><i class="fas fa-times"></i> إغلاق</button>
+                        </div>
+                        <div class="book-viewer" id="teacherBookViewer">
+                            <div id="teacherBookContent" class="book-content">
+                                <div class="book-page">
+                                    <h3>محتوى الكتاب</h3>
+                                    <p>سيظهر هنا محتوى الكتاب المدرسي للمادة المختارة</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="book-actions">
+                            <button class="btn btn-primary" onclick="sendCurrentPageToStudents()"><i class="fas fa-paper-plane"></i> إرسال هذه الصفحة للطلاب</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. الاختبارات -->
+                <div id="teacher-exam" class="tab-content">
+                    <div class="card">
+                        <h3><i class="fas fa-file-alt"></i> إنشاء اختبار جديد</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>عنوان الاختبار:</label>
+                                <input type="text" id="examTitle" placeholder="مثال: اختبار الفصل الأول" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>المادة:</label>
+                                <select id="examSubject" class="form-input">
+                                    <option value="arabic">اللغة العربية</option>
+                                    <option value="math">الرياضيات</option>
+                                    <option value="science">العلوم</option>
+                                    <option value="islamic">التربية الإسلامية</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>نوع السؤال:</label>
+                            <select id="questionType" class="form-input" onchange="toggleQuestionOptions()">
+                                <option value="mcq">اختيار من متعدد</option>
+                                <option value="truefalse">صح/خطأ</option>
+                                <option value="essay">مقالي</option>
+                            </select>
+                        </div>
+                        <div id="mcqOptionsGroup" class="form-group">
+                            <label>الخيارات (مفصولة بفاصلة):</label>
+                            <input type="text" id="mcqChoices" placeholder="الرياض, جدة, مكة, الدمام" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>الإجابة الصحيحة:</label>
+                            <input type="text" id="correctAnswer" placeholder="الإجابة الصحيحة" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>السؤال:</label>
+                            <textarea id="questionText" rows="3" class="form-input" placeholder="اكتب السؤال هنا..."></textarea>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn btn-primary" onclick="addQuestionToExam()"><i class="fas fa-plus"></i> إضافة سؤال</button>
+                            <button class="btn btn-success" onclick="publishExam()"><i class="fas fa-paper-plane"></i> نشر الاختبار للطلاب</button>
+                            <button class="btn btn-secondary" onclick="saveExamDraft()"><i class="fas fa-save"></i> حفظ كمسودة</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-list-check"></i> أسئلة الاختبار الحالي</h3>
+                        <div id="examQuestionsList" class="questions-list"></div>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-history"></i> الاختبارات السابقة</h3>
+                        <div id="previousExamsList" class="exams-list"></div>
+                    </div>
+                </div>
+
+                <!-- 4. التصحيح -->
+                <div id="teacher-grades" class="tab-content">
+                    <div class="card">
+                        <h3><i class="fas fa-robot"></i> التصحيح الذكي</h3>
+                        <div class="form-group">
+                            <label>اختر اختباراً للتصحيح:</label>
+                            <select id="examToCorrect" class="form-input" onchange="loadSubmissions()">
+                                <option value="">-- اختر اختباراً --</option>
+                            </select>
+                        </div>
+                        <div id="submissionsList" class="submissions-list"></div>
+                    </div>
+                </div>
+
+                <!-- 5. الجدول (إعدادات المعلم) -->
+                <div id="teacher-schedule" class="tab-content">
+                    <div class="card">
+                        <h3><i class="fas fa-calendar-week"></i> إعدادات الجدول الدراسي</h3>
+                        <p class="text-muted">يمكنك تعديل الجدول من هنا وسيظهر تلقائياً للطلاب</p>
+                        <div id="scheduleEditor"></div>
+                        <button class="btn btn-primary" onclick="saveSchedule()"><i class="fas fa-save"></i> حفظ الجدول</button>
+                        <button class="btn btn-secondary" onclick="resetSchedule()"><i class="fas fa-undo"></i> إعادة تعيين</button>
+                    </div>
+                </div>
+
+                <!-- 6. AI المساعد -->
+                <div id="teacher-ai" class="tab-content">
+                    <div class="card card-ai">
+                        <h3><i class="fas fa-brain"></i> مساعد AI الذكي (Gemini API)</h3>
+                        <div class="form-group">
+                            <label>اسأل AI عن أي شيء:</label>
+                            <textarea id="aiQuestion" rows="3" class="form-input" placeholder="مثال: اشرح لي درس الجاذبية بطريقة بسيطة..."></textarea>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn btn-ai" onclick="askAI()"><i class="fas fa-microphone"></i> اسأل الذكاء الاصطناعي</button>
+                            <button class="btn btn-outline" onclick="generateExamWithAI()"><i class="fas fa-magic"></i> توليد اختبار بالذكاء الاصطناعي</button>
+                            <button class="btn btn-outline" onclick="analyzeClassWithAI()"><i class="fas fa-chart-line"></i> تحليل أداء الفصل</button>
+                        </div>
+                        <div id="aiResponse" class="ai-response"></div>
+                    </div>
+                </div>
+
+                <!-- 7. الإعدادات -->
+                <div id="teacher-settings" class="tab-content">
+                    <div class="card">
+                        <h3><i class="fas fa-sliders-h"></i> إعدادات المنصة</h3>
+                        <div class="form-group">
+                            <label>لون الواجهة الرئيسية للمعلم:</label>
+                            <input type="color" id="teacherColor" value="#4f46e5" class="form-input" onchange="changeTeacherColor()">
+                        </div>
+                        <div class="form-group">
+                            <label>لون واجهة الطالب:</label>
+                            <input type="color" id="studentColor" value="#10b981" class="form-input" onchange="changeStudentColor()">
+                        </div>
+                        <div class="form-group">
+                            <label>حجم الخط:</label>
+                            <select id="fontSize" class="form-input" onchange="changeFontSize()">
+                                <option value="small">صغير</option>
+                                <option value="medium" selected>متوسط</option>
+                                <option value="large">كبير</option>
+                                <option value="xlarge">كبير جداً</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>وضع القراءة (تباين عالي):</label>
+                            <button class="btn btn-outline" onclick="toggleHighContrast()"><i class="fas fa-eye"></i> تفعيل وضع القراءة</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== الطالب (الجهة اليسرى) ==================== -->
+        <div class="panel student-panel">
+            <div id="lockOverlay" class="lock-overlay" style="display: none;">
+                <div class="lock-content">
+                    <i class="fas fa-pause-circle"></i>
+                    <h2>الشاشة مقفلة</h2>
+                    <p>يرجى الانتباه لشرح المعلم</p>
+                </div>
+            </div>
+
+            <div class="panel-header">
+                <div class="header-title">
+                    <i class="fas fa-user-graduate"></i>
+                    <h2>بوابة الطالب</h2>
+                </div>
+                <div class="header-info">
+                    <span class="status-badge online" id="studentStatus">متصل</span>
+                    <span class="student-name" id="studentNameDisplay">أحمد</span>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <!-- تبويبات الطالب -->
+                <div class="nav-tabs" id="studentTabs">
+                    <button class="tab-btn active" data-tab="student-dashboard">الرئيسية</button>
+                    <button class="tab-btn" data-tab="student-book">الكتاب</button>
+                    <button class="tab-btn" data-tab="student-exam">الاختبارات</button>
+                    <button class="tab-btn" data-tab="student-schedule">الجدول</button>
+                    <button class="tab-btn" data-tab="student-homework">الواجبات</button>
+                    <button class="tab-btn" data-tab="student-grades">درجاتي</button>
+                    <button class="tab-btn" data-tab="student-games">الألعاب</button>
+                </div>
+
+                <!-- 1. الرئيسية -->
+                <div id="student-dashboard" class="tab-content active">
+                    <div class="card card-alert">
+                        <div id="studentAlert" class="alert-box">
+                            <i class="fas fa-info-circle"></i>
+                            <span>لا توجد أوامر حالية من المعلم</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-chalkboard"></i> الحصة الحالية</h3>
+                        <div id="currentLessonBox" class="current-lesson">
+                            <i class="fas fa-spinner fa-spin"></i> جاري تحميل الجدول...
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-bullhorn"></i> إعلانات المعلم</h3>
+                        <div id="announcementsBox" class="announcements-box">
+                            <p class="text-muted">لا توجد إعلانات جديدة</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-heartbeat"></i> النشاط والصحة</h3>
+                        <div class="stats-row">
+                            <div class="stat-card"><i class="fas fa-shoe-prints"></i><div class="stat-value" id="stepsCount">1,284</div><div class="stat-label">خطوة</div></div>
+                            <div class="stat-card"><i class="fas fa-smile"></i><div class="stat-value" id="moodValue">ممتاز</div><div class="stat-label">المزاج</div></div>
+                            <div class="stat-card"><i class="fas fa-brain"></i><div class="stat-value" id="focusValue">92%</div><div class="stat-label">التركيز</div></div>
+                            <div class="stat-card"><i class="fas fa-clock"></i><div class="stat-value" id="studyTime">2.5</div><div class="stat-label">ساعة دراسة</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. الكتاب المدرسي للطالب -->
+                <div id="student-book" class="tab-content">
+                    <div class="card">
+                        <h3><i class="fas fa-book-open"></i> كتاب المنهج</h3>
+                        <div class="form-group">
+                            <label>اختر المادة:</label>
+                            <select id="studentSubjectSelect" class="form-input" onchange="changeStudentBook()">
+                                <option value="arabic">اللغة العربية</option>
+                                <option value="math">الرياضيات</option>
+                                <option value="science">العلوم</option>
+                                <option value="islamic">التربية الإسلامية</option>
+                                <option value="english">اللغة الإنجليزية</option>
+                            </select>
+                        </div>
+                        <div class="book-controls">
+                            <button class="btn btn-sm" onclick="studentBookPrev()"><i class="fas fa-chevron-right"></i> السابق</button>
+                            <span id="studentPageNum">الصفحة 1 من 200</span>
+                            <button class="btn btn-sm" onclick="studentBookNext()">التالي <i class="fas fa-chevron-left"></i></button>
+                        </div>
+                        <div class="book-viewer" id="studentBookViewer">
+                            <div id="studentBookContent" class="book-content">
+                                <div class="book-page">
+                                    <h3>📖 محتوى الكتاب</h3>
+                                    <p>سيظهر هنا محتوى الكتاب المدرسي للمادة المختارة</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. الاختبارات للطالب -->
+                <div id="student-exam" class="tab-content">
+                    <div class="card">
+                        <h3><i class="fas fa-file-alt"></i> الاختبارات المتاحة</h3>
+                        <div id="studentExamsList" class="exams-list"></div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-history"></i> الاختبارات السابقة</h3>
+                        <div id="studentPastExams" class="exams-list"></div>
+                    </div>
+                </div>
+
+                <!-- 4. الجدول للطالب -->
+                <div id="student-schedule" class="tab-content">
+                    <div class="card">
+                        <h3><i class="fas fa-calendar-week"></i> جدول الحصص الأسبوعي</h3>
+                        <div id="scheduleDisplay" class="schedule-table"></div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-bell"></i> الحصة القادمة</h3>
+                        <div id="nextLessonBox" class="next-lesson"></div>
+                    </div>
+                </div>
+
+                <!-- 5. الواجبات للطالب -->
+                <div id="student-homework" class="tab-content">
+                    <div class="card">
+                        <h3><i class="fas fa-tasks"></i> قائمة الواجبات</h3>
+                        <div id="homeworkList" class="homework-list"></div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-check-circle"></i> الواجبات المسلمة</h3>
+                        <div id="submittedHomework" class="homework-list"></div>
+                    </div>
+                </div>
+
+                <!-- 6. درجاتي -->
+                <div id="student-grades" class="tab-content">
+                    <div class="card">
+                        <h3><i class="fas fa-chart-line"></i> سجل الدرجات</h3>
+                        <div id="gradesHistory" class="grades-table"></div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-star"></i> نقاط التميز</h3>
+                        <div id="achievementsBox" class="achievements"></div>
+                    </div>
+                </div>
+
+                <!-- 7. الألعاب -->
+                <div id="student-games" class="tab-content">
+                    <div class="card">
+                        <h3><i class="fas fa-gamepad"></i> ألعاب التركيز والتحليل</h3>
+                        <div class="button-group">
+                            <button class="btn btn-game" onclick="startMemoryGame()"><i class="fas fa-brain"></i><span>لعبة الذاكرة</span></button>
+                            <button class="btn btn-game" onclick="startPuzzleGame()"><i class="fas fa-puzzle-piece"></i><span>لعبة التحليل</span></button>
+                            <button class="btn btn-game" onclick="startMathGame()"><i class="fas fa-calculator"></i><span>تحدي الرياضيات</span></button>
+                            <button class="btn btn-game" onclick="startFocusGame()"><i class="fas fa-eye"></i><span>لعبة التركيز</span></button>
+                            <button class="btn btn-game" onclick="startWordGame()"><i class="fas fa-font"></i><span>لعبة الكلمات</span></button>
+                            <button class="btn btn-game" onclick="startSpeedGame()"><i class="fas fa-bolt"></i><span>تحدي السرعة</span></button>
+                        </div>
+                        <div id="gameArea" class="game-area"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة السؤال التفاعلي -->
+    <div id="questionModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-question-circle"></i> سؤال من المعلم</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="modalQuestionText" class="question-text"></p>
+                <div id="modalQuestionOptions" class="question-options"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="submitModalAnswer()">إرسال الإجابة</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة الاختبار -->
+    <div id="examModal" class="modal" style="display: none;">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3 id="examModalTitle"><i class="fas fa-file-alt"></i> الاختبار</h3>
+                <button class="modal-close" onclick="closeExamModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="examModalBody"></div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="submitExamAnswers()">تسليم الاختبار</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- رسالة منبثقة -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
