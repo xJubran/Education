@@ -780,7 +780,7 @@ function initTabs() {
 
 // ========== التهيئة ==========
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('✅ Education Easy - تم تحميل جميع الوظائف');
+    console.log('✅ Education With Rakeez - تم تحميل جميع الوظائف');
     loadSettings();
     initTabs();
     updateScheduleDisplay();
@@ -797,5 +797,5 @@ document.addEventListener('DOMContentLoaded', () => {
         const steps = document.getElementById('stepsCount');
         if (steps) steps.textContent = (parseInt(steps.textContent.replace(/,/g, '')) + Math.floor(Math.random() * 20)).toLocaleString();
     }, 30000);
-    showToast('✨ مرحباً بك في منصة Education Easy');
+    showToast('✨ مرحباً بك في منصة Education With Rakeez');
 });
